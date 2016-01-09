@@ -1,0 +1,135 @@
+<html>
+	<head>
+		<style>
+			body {
+				margin: 0px;
+				background: #ddd;
+			}
+			div#main {
+				width: 1000px;
+				margin: 0px auto;
+			}
+			div#leftContainer {
+				margin: 0px auto;
+				width: 400px;
+				margin-top: 100px;
+				padding-bottom: 100px;
+				padding-top: 100px;
+				border: 1px solid #ccc;
+				background: #eee;
+				float: left;
+			}
+			div#leftContainer span {
+				display: block;
+				text-align: center;
+				padding: 10px;
+			 }
+			div#leftContainer input, button {
+				margin: 0px auto;
+				margin-top: 5px;
+				padding: 5px;
+				display: block;
+				border-radius: 3px;
+				border: 1px solid #ccc;
+				outline: none;
+			}
+			div#leftContainer input:hover {
+				border: 1px solid #333;
+			}
+
+			div#rightContainer {
+				margin: 0px auto;
+				width: 400px;
+				margin-top: 100px;
+				padding-bottom: 50px;
+				padding-top: 50px;
+				border: 1px solid #ccc;
+				background: #eee;
+				float: right;
+			}
+			div#rightContainer span {
+				display: block;
+				text-align: center;
+				padding: 10px;
+			 }
+			div#rightContainer input, button, select {
+				margin: 0px auto;
+				margin-top: 5px;
+				padding: 5px;
+				display: block;
+				border-radius: 3px;
+				border: 1px solid #ccc;
+				outline: none;
+			}
+			div#rightContainer input:hover {
+				border: 1px solid #333;
+			}			
+			table#teases {
+				margin: 0px auto;
+				width: 150px;
+				background: #fff;
+				padding: 5px;
+				font-size: 12px;
+			}
+			table#teases tr:nth-child(even) 
+			{
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="main">
+			<div id="leftContainer">
+				<span>Hello, user</span>
+				<span>
+					Tease a Friend
+				</span>
+				<select type="text" placeholder="username">
+					<option value="arron"> Arron </option>
+					<option value="zach"> Zach </option>
+				</select>
+				<input type="text" placeholder="password">
+				<button type="submit">Submit</button>
+				<br><br>
+				<button>
+					Log out
+				</button>
+			</div>
+			<div id="rightContainer">
+
+				<span>
+					Who's Teasing me?
+				</span>
+				<table id="teases">
+					<tr>
+						<td>
+							Arron
+						</td>
+						<td>
+							Timestamp
+						</td>
+						<td>
+							<button>
+								Tease back
+							</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Arron
+						</td>
+						<td>
+							Timestamp
+						</td>
+						<td>
+							<button>
+								Tease back
+							</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
