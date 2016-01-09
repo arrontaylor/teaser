@@ -38,9 +38,11 @@
 			<span>
 				Sign In
 			</span>
-			<input type="text" placeholder="username">
-			<input type="text" placeholder="password">
-			<button type="submit">Submit</button>
+			<form method="POST" action="login.go">
+				<input name="username" type="text" placeholder="username">
+				<input name="password" type="text" placeholder="password">
+				<button type="submit">Submit</button>
+			</form>
 		</div>
 	</body>
 </html>
