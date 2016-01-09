@@ -1,14 +1,14 @@
 package db
 
-import "github.com/arrontaylor/teaser/teaser"
+import "github.com/arrontaylor/teaser/server"
 
-var CreateAccount = func(username string, password string, firstname string, lastname string, gender string) *teaser.Account {
-	account := teaser.GetAccount(username)
+var CreateAccount = func(username string, password string, firstname string, lastname string, gender string) *server.Account {
+	account := server.GetAccount(username)
 
 	if account != nil {
 		return nil
 	} else {
-		account = &teaser.Account{
+		account = &server.Account{
 			Username:  username,
 			Password:  password,
 			FirstName: firstname,

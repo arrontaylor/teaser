@@ -1,4 +1,4 @@
-package teaser
+package server
 
 import "net/http"
 

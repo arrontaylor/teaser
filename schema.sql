@@ -6,3 +6,10 @@ CREATE TABLE accounts (
   lastname TEXT,
   gender TEXT
 );
+
+CREATE TABLE teases (
+  fromusername TEXT,
+  tousername TEXT,
+  time INTEGER,
+  read INTEGER
+);

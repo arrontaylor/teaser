@@ -1,4 +1,4 @@
-package teaser
+package server
 
 import "github.com/cznic/mathutil"
 
