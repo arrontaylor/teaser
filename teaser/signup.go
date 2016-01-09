@@ -10,8 +10,11 @@ var SignupHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 
 	username := r.FormValue("username")
 	password := HashPassword(r.FormValue("password"))
+	firstname := r.FormValue("firstname")
+	lastname := r.FormValue("lastname")
+	gender := r.FormValue("gender")
 
-	account := CreateAccount(username, password)
+	account := CreateAccount(username, password, firstname, lastname, gender)
 	if account == nil {
 		w.WriteHeader(500)
 		w.Write([]byte("Error creating account"))

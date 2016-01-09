@@ -11,7 +11,7 @@ type Account struct {
 }
 
 var LoadAccount func(username string) *Account
-var CreateAccount func(username string, password string) *Account
+var CreateAccount func(username string, password string, firstname string, lastname string, gender string) *Account
 
 var Accounts = make(map[string]*Account)
 

@@ -7,6 +7,7 @@ import "fmt"
 
 func main() {
 	teaser.LoadAccount = db.LoadAccount
+	teaser.CreateAccount = db.CreateAccount
 
 	http.Handle("/", http.FileServer(http.Dir("./web")))
 	http.Handle("/login.go", teaser.LoginHandler)
