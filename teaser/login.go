@@ -20,6 +20,12 @@ var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request)
 	password := HashPassword(r.FormValue("password"))
 
 	account := GetAccount(username)
+
+	if account == nil {
+		http.Redirect(w, r, "/signup", http.StatusMovedPermanently)
+		return
+	}
+
 	if account.Password != password {
 		http.Redirect(w, r, "/login", http.StatusMovedPermanently)
 		return
