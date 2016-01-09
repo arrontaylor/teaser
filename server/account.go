@@ -1,13 +1,13 @@
-package teaser
+package server
 
 type Account struct {
 	AccountId int
+	SessionId int
 	Username  string
 	Password  string
 	FirstName string
 	LastName  string
 	Gender    string
-	SessionId int
 }
 
 var LoadAccount func(username string) *Account
