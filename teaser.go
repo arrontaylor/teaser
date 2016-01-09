@@ -5,7 +5,7 @@ import "net/http"
 import "fmt"
 
 func main() {
-	http.Handle("/", http.FileServer(http.Dir(".")))
+	http.Handle("/", http.FileServer(http.Dir("./web")))
 	http.Handle("/login.go", teaser.LoginHandler)
 	http.Handle("/signup.go", teaser.SignupHandler)
 	fmt.Println("Starting teaser server...")
