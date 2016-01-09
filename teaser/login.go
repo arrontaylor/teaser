@@ -11,7 +11,7 @@ var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request)
 	// redirect if already logged in
 	if sessionCookie, err := r.Cookie("SessionId"); err == nil {
 		if sessionId, err := strconv.ParseInt(sessionCookie.Value, 10, 0); err == nil && Sessions[int(sessionId)] != nil {
-			http.Redirect(w, r, "/home/", http.StatusMovedPermanently)
+			http.Redirect(w, r, "/dashboard", http.StatusMovedPermanently)
 			return
 		}
 	}
@@ -38,5 +38,5 @@ var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request)
 	Sessions[account.SessionId] = &account.Username
 
 	w.Header().Set("Set-Cookie", "SessionId="+strconv.Itoa(account.SessionId))
-	http.Redirect(w, r, "/home", http.StatusMovedPermanently)
+	http.Redirect(w, r, "/dashboard", http.StatusMovedPermanently)
 })

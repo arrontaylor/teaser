@@ -3,7 +3,7 @@
 		<style>
 			body {
 				margin: 0px;
-				background: #ddd;
+				background: #eee;
 			}
 			div#main {
 				width: 1000px;
@@ -12,18 +12,12 @@
 			div#leftContainer {
 				margin: 0px auto;
 				width: 400px;
-				margin-top: 100px;
-				padding-bottom: 100px;
-				padding-top: 100px;
-				border: 1px solid #ccc;
-				background: #eee;
+				height: 100%;
+				border: 1px solid #d3c6c6;
+				border-top:0px;
+				background: #fff;
 				float: left;
 			}
-			div#leftContainer span {
-				display: block;
-				text-align: center;
-				padding: 10px;
-			 }
 			div#leftContainer input, button {
 				margin: 0px auto;
 				margin-top: 5px;
@@ -39,24 +33,24 @@
 
 			div#rightContainer {
 				margin: 0px auto;
-				width: 400px;
-				margin-top: 100px;
-				padding-bottom: 50px;
-				padding-top: 50px;
-				border: 1px solid #ccc;
-				background: #eee;
+				width: 597px;
+				border: 1px solid #d3c6c6;
 				float: right;
+				border-top:0px;
+				border-left: 0px;
 			}
-			div#rightContainer span {
-				display: block;
+			div#rightContainer span#header {
 				text-align: center;
-				padding: 10px;
-			 }
+				display: block;
+				padding-bottom: 5px;
+				font-size: 14px;
+				font-family: tahoma;
+				border-bottom: 1px solid #ccc;
+			}
 			div#rightContainer input, button, select {
 				margin: 0px auto;
 				margin-top: 5px;
 				padding: 5px;
-				display: block;
 				border-radius: 3px;
 				border: 1px solid #ccc;
 				outline: none;
@@ -66,14 +60,50 @@
 			}			
 			table#teases {
 				margin: 0px auto;
-				width: 150px;
+				width: 100%;
 				background: #fff;
-				padding: 5px;
 				font-size: 12px;
+			}
+			table#teases tr {
+				text-align: center;
 			}
 			table#teases tr:nth-child(even) 
 			{
-				background-color: red;
+				background-color: #eee;
+			}
+			div.header {
+				padding: 15px;
+				background: #eadede;
+				font-size: 14px;
+				font-family: tahoma;
+				border-bottom: 1px solid #ccc;
+
+			}
+			div.newTease {
+				padding: 25px 15px 15px 15px;
+				text-align: center;
+			}
+			div.newTease span {
+				font-size: 14px;
+				font-family: tahoma;
+			}
+			div.newTease button {
+				padding: 5px 10px 5px 10px;
+				border: 1px solid #827a7a;
+				color: #fff;
+				cursor: pointer;
+				background: #b57575;
+			}
+				div.newTease button:hover {
+				
+				background: #d18787;
+			}
+			button.logout {
+				padding: 5px 10px 5px 10px;
+				border: 1px solid #d3c6c6;
+				color: #fff;
+				cursor: pointer;
+				background: #b57575;
 			}
 		</style>
 	</head>
@@ -81,26 +111,33 @@
 
 		<div id="main">
 			<div id="leftContainer">
-				<span>Hello, user</span>
-				<span>
-					Tease a Friend
-				</span>
-				<select type="text" placeholder="username">
+				<div class="header">
+					<span>
+						Tease a Friend
+					</span>
+				</div>
+				<div class="newTease">
+					<span>
+						Choose your tease:
+					</span>
+					<select type="text" placeholder="username">
 					<option value="arron"> Arron </option>
 					<option value="zach"> Zach </option>
-				</select>
-				<input type="text" placeholder="password">
-				<button type="submit">Submit</button>
+				</select><br><br>
+					<button type="submit">Submit</button>
+				</div>
+				
 				<br><br>
 				<button>
 					Log out
 				</button>
 			</div>
 			<div id="rightContainer">
-
-				<span>
-					Who's Teasing me?
-				</span>
+				<div class="header">
+					<span>
+						Recent Teases
+					</span>
+				</div>
 				<table id="teases">
 					<tr>
 						<td>
