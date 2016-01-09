@@ -17,28 +17,43 @@
         margin: 0px auto;
         width: 400px;
         margin-top: 100px;
-        padding-bottom: 100px;
-        padding-top: 100px;
         border: 1px solid #ccc;
         background: #eee;
+        text-align: center;
       }
       div#loginContainer span {
         display: block;
         text-align: center;
         padding: 10px;
+        font-family: verdana;
        }
-      div#loginContainer input, button {
+      div#loginContainer input {
         margin: 0px auto;
-        margin-top: 5px;
-        padding: 5px;
-        display: block;
+        padding: 10px 15px 10px 15px;
         border-radius: 3px;
-        border: 1px solid #ccc;
+        border: 1px solid #d3c6c6;
         outline: none;
+        margin-top: 5px;
+        background: #fefefe;
       }
       div#loginContainer input:hover {
-        border: 1px solid #333;
+        border: 1px solid #d3c6c6;
+
       }   
+      button {
+        display: block;
+        margin: 0px auto;
+        margin-top: 15px;
+        padding: 5px 10px 5px 10px;
+        border: 1px solid #827a7a;
+        color: #fff;
+        cursor: pointer;
+        background: #b57575;
+        border-radius: 5px;
+      }  
+      button:hover {
+         background: #d18787;
+      }
     </style>
   </head>
   <body>
@@ -51,7 +66,7 @@
         <input type="text" name="password" placeholder="password"><br/>
         <input type="text" name="firstname" placeholder="First Name"><br/>
         <input type="text" name="lastname" placeholder="Last Name"><br/>
-        <input type="text" name="gender"><br/>
+        <input type="text" name="gender" placeholder="Gender"><br/>
         <button type="submit">Submit</button>
       </form>
     </div>

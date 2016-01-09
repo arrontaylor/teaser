@@ -3,34 +3,51 @@
 		<style>
 			body {
 				margin: 0px;
-				background: #ddd;
+				background: #eee;
 			}
 			div#loginContainer {
 				margin: 0px auto;
 				width: 400px;
 				margin-top: 100px;
-				padding-bottom: 100px;
-				padding-top: 100px;
+				padding-bottom: 50px;
+				padding-top: 50px;
 				border: 1px solid #ccc;
-				background: #eee;
+				background: #fff;
 			}
 			div#loginContainer span {
 				display: block;
 				text-align: center;
 				padding: 10px;
+				font-family: verdana;
 			 }
-			div#loginContainer input, button {
+			div#loginContainer input {
 				margin: 0px auto;
 				margin-top: 5px;
-				padding: 5px;
+				padding: 10px 15px 10px 15px;
 				display: block;
 				border-radius: 3px;
-				border: 1px solid #ccc;
+				border: 1px solid #d3c6c6;
 				outline: none;
+				background: #fefefe;
 			}
 			div#loginContainer input:hover {
-				border: 1px solid #333;
+				border: 1px solid #d3c6c6;
+
 			}		
+			button {
+				display: block;
+				margin: 0px auto;
+				margin-top: 15px;
+				padding: 5px 10px 5px 10px;
+				border: 1px solid #827a7a;
+				color: #fff;
+				cursor: pointer;
+				background: #b57575;
+				border-radius: 5px;
+			}
+			button:hover {
+				background: #d18787;
+			}
 		</style>
 	</head>
 	<body>
@@ -40,8 +57,8 @@
 			</span>
 			<form method="POST" action="login.go">
 				<input name="username" type="text" placeholder="username">
-				<input name="password" type="text" placeholder="password">
-				<button type="submit">Submit</button>
+				<input name="password" type="password" placeholder="password">
+				<button type="submit">Login</button>
 			</form>
 		</div>
 	</body>
