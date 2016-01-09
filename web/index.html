@@ -1,4 +1,46 @@
 <html>
+	<head>
+		<style>
+			body {
+				margin: 0px;
+				background: #ddd;
+			}
+			div#loginContainer {
+				margin: 0px auto;
+				width: 400px;
+				margin-top: 100px;
+				padding-bottom: 100px;
+				padding-top: 100px;
+				border: 1px solid #ccc;
+				background: #eee;
+			}
+			div#loginContainer span {
+				display: block;
+				text-align: center;
+				padding: 10px;
+			 }
+			div#loginContainer input, button {
+				margin: 0px auto;
+				margin-top: 5px;
+				padding: 5px;
+				display: block;
+				border-radius: 3px;
+				border: 1px solid #ccc;
+				outline: none;
+			}
+			div#loginContainer input:hover {
+				border: 1px solid #333;
+			}		
+		</style>
+	</head>
 	<body>
+		<div id="loginContainer">
+			<span>
+				Sign In
+			</span>
+			<input type="text" placeholder="username">
+			<input type="text" placeholder="password">
+			<button type="submit">Submit</button>
+		</div>
 	</body>
 </html>
