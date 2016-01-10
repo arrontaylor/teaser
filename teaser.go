@@ -26,6 +26,7 @@ func links() {
 func routes() {
 	http.Handle("/", http.FileServer(http.Dir("./web")))
 	http.Handle("/login.go", server.LoginHandler)
+	http.Handle("/logout.go", server.LogoutHandler)
 	http.Handle("/signup.go", server.SignupHandler)
 	http.Handle("/profile.json", server.ProfileHandler)
 	http.Handle("/create-tease.go", server.CreateTeaseHandler)
