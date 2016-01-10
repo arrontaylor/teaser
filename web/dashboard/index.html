@@ -197,6 +197,9 @@
 			  	  }
 			  	});	
 			}
+			logout = function() {
+				window.location.pathname = "/logout.go"
+			}
 		</script>
 
 		<div id="main">
@@ -216,7 +219,7 @@
 				</div>
 				
 				<br><br>
-				<button>
+				<button onclick="logout()">
 					Log out
 				</button>
 			</div>
