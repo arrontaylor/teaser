@@ -13,3 +13,9 @@ CREATE TABLE teases (
   time INTEGER,
   read INTEGER
 );
+
+CREATE TABLE friends (
+  username1 TEXT,
+  username2 TEXT,
+  time INTEGER
+);

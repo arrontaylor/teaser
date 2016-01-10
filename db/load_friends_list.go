@@ -1,11 +1,11 @@
 package db
 
-import "github.com/arrontaylor/teaser/server"
+import "github.com/arrontaylor/teaser/teaser"
 
-var LoadFriendsList = func(username string) server.FriendsList {
+var LoadFriendsList = func(username string) teaser.FriendsList {
 	friendslist := make([]string, 0)
 
-	rows, err := Connection.Query("SELECT username FROM accounts")
+	rows, err := Connection.Query("SELECT username2 FROM friends WHERE username1=?", username)
 
 	if err != nil {
 		return nil

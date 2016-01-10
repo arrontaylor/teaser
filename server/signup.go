@@ -1,5 +1,6 @@
 package server
 
+import "github.com/arrontaylor/teaser/teaser"
 import "net/http"
 
 var SignupHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -14,13 +15,13 @@ var SignupHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 	lastname := r.FormValue("lastname")
 	gender := r.FormValue("gender")
 
-	account := CreateAccount(username, password, firstname, lastname, gender)
+	account := teaser.CreateAccount(username, password, firstname, lastname, gender)
 	if account == nil {
 		w.WriteHeader(500)
 		w.Write([]byte("Error creating account"))
 		return
 	} else {
-		Accounts[account.Username] = account
+		teaser.Accounts[account.Username] = account
 	}
 
 	LoginHandler(w, r)

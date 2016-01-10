@@ -1,5 +1,6 @@
 package server
 
+import "github.com/arrontaylor/teaser/teaser"
 import "net/http"
 import "strconv"
 
@@ -9,12 +10,12 @@ var CreateTeaseHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	var account *Account
+	var account *teaser.Account
 
 	if sessionCookie, err := r.Cookie("SessionId"); err == nil {
 		if sessionId, err := strconv.ParseInt(sessionCookie.Value, 10, 0); err == nil {
 			if username := Sessions[int(sessionId)]; username != nil {
-				account = Accounts[*username]
+				account = teaser.Accounts[*username]
 			}
 		}
 	}
@@ -28,12 +29,12 @@ var CreateTeaseHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Re
 	fromusername := account.Username
 	tousername := r.FormValue("tousername")
 
-	tease := CreateTease(fromusername, tousername)
+	tease := teaser.CreateTease(fromusername, tousername)
 
 	if tease == nil {
 		w.WriteHeader(500)
 		w.Write([]byte("{\"error\":\"Error creating tease\"}"))
 	}
 
-	delete(TeasesLists, tousername)
+	delete(teaser.TeasesLists, tousername)
 })

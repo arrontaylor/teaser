@@ -1,9 +1,9 @@
 package server
 
+import "encoding/json"
+import "github.com/arrontaylor/teaser/teaser"
 import "net/http"
 import "strconv"
-import "fmt"
-import "encoding/json"
 
 var ProfileHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
@@ -11,12 +11,12 @@ var ProfileHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	var account *Account
+	var account *teaser.Account
 
 	if sessionCookie, err := r.Cookie("SessionId"); err == nil {
 		if sessionId, err := strconv.ParseInt(sessionCookie.Value, 10, 0); err == nil {
 			if username := Sessions[int(sessionId)]; username != nil {
-				account = Accounts[*username]
+				account = teaser.Accounts[*username]
 			}
 		}
 	}
@@ -30,10 +30,8 @@ var ProfileHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Reques
 	resp := make(map[string]interface{})
 
 	resp["username"] = account.Username
-	resp["friends"] = GetFriendsList(account.Username)
-	resp["teases"] = GetTeasesList(account.Username)
-
-	fmt.Println(resp["teases"])
+	resp["friends"] = teaser.GetFriendsList(account.Username)
+	resp["teases"] = teaser.GetTeasesList(account.Username)
 
 	write, err := json.Marshal(resp)
 

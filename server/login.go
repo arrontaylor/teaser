@@ -1,5 +1,6 @@
 package server
 
+import "github.com/arrontaylor/teaser/teaser"
 import "net/http"
 import "strconv"
 
@@ -19,7 +20,7 @@ var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request)
 	username := r.FormValue("username")
 	password := HashPassword(r.FormValue("password"))
 
-	account := GetAccount(username)
+	account := teaser.GetAccount(username)
 
 	if account == nil {
 		http.Redirect(w, r, "/signup", http.StatusMovedPermanently)

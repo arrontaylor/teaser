@@ -1,4 +1,4 @@
-package server
+package teaser
 
 type Account struct {
 	AccountId int

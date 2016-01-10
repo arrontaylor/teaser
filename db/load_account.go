@@ -1,9 +1,9 @@
 package db
 
-import "github.com/arrontaylor/teaser/server"
+import "github.com/arrontaylor/teaser/teaser"
 
-var LoadAccount = func(username string) *server.Account {
-	account := &server.Account{}
+var LoadAccount = func(username string) *teaser.Account {
+	account := &teaser.Account{}
 
 	row := Connection.QueryRow("SELECT accountid, username, password, firstname, lastname, gender FROM accounts WHERE username=?", username)
 

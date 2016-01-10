@@ -1,10 +1,10 @@
 package db
 
 import "time"
-import "github.com/arrontaylor/teaser/server"
+import "github.com/arrontaylor/teaser/teaser"
 
-var CreateTease = func(fromusername string, tousername string) *server.Tease {
-	tease := &server.Tease{
+var CreateTease = func(fromusername string, tousername string) *teaser.Tease {
+	tease := &teaser.Tease{
 		FromUsername: fromusername,
 		ToUsername:   tousername,
 		Time:         time.Now(),

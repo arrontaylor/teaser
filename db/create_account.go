@@ -1,14 +1,15 @@
 package db
 
-import "github.com/arrontaylor/teaser/server"
+import "fmt"
+import "github.com/arrontaylor/teaser/teaser"
 
-var CreateAccount = func(username string, password string, firstname string, lastname string, gender string) *server.Account {
-	account := server.GetAccount(username)
+var CreateAccount = func(username string, password string, firstname string, lastname string, gender string) *teaser.Account {
+	account := teaser.GetAccount(username)
 
 	if account != nil {
-		return nil
+		return account
 	} else {
-		account = &server.Account{
+		account = &teaser.Account{
 			Username:  username,
 			Password:  password,
 			FirstName: firstname,
@@ -20,6 +21,7 @@ var CreateAccount = func(username string, password string, firstname string, las
 	res, err := Connection.Exec("INSERT INTO accounts (username, password, firstname, lastname, gender) VALUES (?, ?, ?, ?, ?)", username, password, firstname, lastname, gender)
 
 	if err != nil {
+		fmt.Println(err.Error())
 		return nil
 	}
 
@@ -27,6 +29,7 @@ var CreateAccount = func(username string, password string, firstname string, las
 	account.AccountId = int(accountId)
 
 	if err != nil {
+		fmt.Println(err.Error())
 		return nil
 	}
 

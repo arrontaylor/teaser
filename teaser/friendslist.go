@@ -1,7 +1,8 @@
-package server
+package teaser
 
 type FriendsList []string
 
+var AddFriendToList func(username1 string, username2 string)
 var LoadFriendsList func(username string) FriendsList
 
 var FriendsLists = make(map[string]FriendsList)

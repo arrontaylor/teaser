@@ -1,22 +1,33 @@
 package main
 
 import "github.com/arrontaylor/teaser/server"
+import "github.com/arrontaylor/teaser/teaser"
 import "github.com/arrontaylor/teaser/db"
 import "net/http"
 import "fmt"
 
 func main() {
-	server.LoadAccount = db.LoadAccount
-	server.CreateAccount = db.CreateAccount
-	server.LoadFriendsList = db.LoadFriendsList
-	server.LoadTeasesList = db.LoadTeasesList
-	server.CreateTease = db.CreateTease
+	links()
+	routes()
 
+	fmt.Println("Starting teaser server...")
+	http.ListenAndServe(":8080", nil)
+}
+
+func links() {
+	teaser.LoadAccount = db.LoadAccount
+	teaser.CreateAccount = db.CreateAccount
+	teaser.LoadFriendsList = db.LoadFriendsList
+	teaser.AddFriendToList = db.AddFriendToList
+	teaser.LoadTeasesList = db.LoadTeasesList
+	teaser.CreateTease = db.CreateTease
+}
+
+func routes() {
 	http.Handle("/", http.FileServer(http.Dir("./web")))
 	http.Handle("/login.go", server.LoginHandler)
 	http.Handle("/signup.go", server.SignupHandler)
 	http.Handle("/profile.json", server.ProfileHandler)
 	http.Handle("/create-tease.go", server.CreateTeaseHandler)
-	fmt.Println("Starting teaser server...")
-	http.ListenAndServe(":8080", nil)
+	http.Handle("/add-friend.go", server.AddFriendHandler)
 }
