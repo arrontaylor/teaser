@@ -37,4 +37,5 @@ var CreateTeaseHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Re
 	}
 
 	delete(teaser.TeasesLists, tousername)
+	http.Redirect(w, r, "/dashboard", http.StatusMovedPermanently)
 })

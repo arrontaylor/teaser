@@ -1,5 +1,6 @@
 <html>
 	<head>
+	    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 		<style>
 			body {
 				margin: 0px;
@@ -54,6 +55,7 @@
 				border-radius: 3px;
 				border: 1px solid #ccc;
 				outline: none;
+
 			}
 			div#rightContainer input:hover {
 				border: 1px solid #333;
@@ -61,6 +63,7 @@
 			table#teases {
 				margin: 0px auto;
 				width: 100%;
+				overflow: scroll;
 				background: #fff;
 				font-size: 12px;
 				font-family: verdana;
@@ -72,7 +75,7 @@
 			{
 				background-color: #eee;
 			}
-			table#teases td img {
+			table#recievedTeases td img {
 				height: 25px;
 				width: 25px;
 			}
@@ -111,26 +114,105 @@
 				cursor: pointer;
 				background: #b57575;
 			}
+			form {
+				height: 15px;
+			}
 		</style>
 	</head>
 	<body>
+
+		<script>
+			$(function() {
+				refreshProfile()
+			});
+
+			sendTease = function(tousername) {
+				$.ajax('/create-tease.go').done(function() {
+					reloadProfile()
+				})
+			}
+
+			refreshProfile = function() {
+				$.getJSON('/profile.json', function(data) {
+					reloadProfile(data)
+				});
+			}
+
+			reloadProfile = function(data) {
+				// Remove all teases and 
+
+				$('#recievedTeases')[0].innerHTML = ""
+				$("#send-tease-select")[0].innerHTML = ""
+
+				$('#username')[0].innerHTML = data.username
+
+				$.each(data.friends, function(index, friend) {
+					$("#send-tease-select").append($("<option value=\"" + friend + "\">" + friend + "</option>"))
+				})
+				$.each(data.teases, function(index, tease) {
+					var row = $("<tr><td><img src=\"../tease.png\"></td><form><td name=tousername>" + tease.FromUsername + "</td><td>" + tease.Time + "</td><td><button value=sendback  onclick=sendTease() >sendback</button></form></td></tr>")
+					$('button', row).click(function() {
+						replyTease(tease.FromUsername)
+					})
+					$("#recievedTeases").append(row)
+				})
+			}
+
+			sendTease = function() {
+				var value = $('#send-tease-select')[0].value
+				
+				var fd = new FormData();    
+				fd.append( 'tousername', value );
+
+				$.ajax({
+				  url: '/create-tease.go',
+				  data: fd,
+				  processData: false,
+				  contentType: false,
+				  type: 'POST',
+				  success: function(data){
+				  	refreshProfile()
+			  	  },
+			  	  error: function() {
+			  	  	console.log('oops')
+			  	  	console.log(arguments)
+			  	  }
+			  	});	
+			}
+			replyTease = function(fromusername) {
+				var fd = new FormData();    
+				fd.append( 'tousername', fromusername );
+				$.ajax({
+				  url: '/create-tease.go',
+				  data: fd,
+				  processData: false,
+				  contentType: false,
+				  type: 'POST',
+				  success: function(data){
+				  	refreshProfile()
+			  	  },
+			  	  error: function() {
+			  	  	console.log('oops')
+			  	  	console.log(arguments)
+			  	  }
+			  	});	
+			}
+		</script>
 
 		<div id="main">
 			<div id="leftContainer">
 				<div class="header">
 					<span>
-						Tease a Friend
+						<span id="username"></span> Tease a Friend
 					</span>
 				</div>
 				<div class="newTease">
 					<span>
 						Choose your tease:
 					</span>
-					<select type="text" placeholder="username">
-					<option value="arron"> Arron </option>
-					<option value="zach"> Zach </option>
-				</select><br><br>
-					<button type="submit">Submit</button>
+					<select name="tousername" id="send-tease-select" type="text" placeholder="username">
+					</select><br><br>
+					<button type="submit" onclick="sendTease()">Submit</button>
 				</div>
 				
 				<br><br>
@@ -144,39 +226,8 @@
 						Recent Teases
 					</span>
 				</div>
-				<table id="teases">
-					<tr>
-						<td>
-							<img src="../tease.png" sty>
-						</td>
-						<td>
-							Arron
-						</td>
-						<td>
-							Timestamp
-						</td>
-						<td>
-							<button>
-								Tease back
-							</button>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<img src="../tease.png" sty>
-						</td>
-						<td>
-							Arron
-						</td>
-						<td>
-							Timestamp
-						</td>
-						<td>
-							<button>
-								Tease back
-							</button>
-						</td>
-					</tr>
+				<table id="recievedTeases">
+					
 				</table>
 			</div>
 		</div>
