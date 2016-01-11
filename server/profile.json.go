@@ -34,6 +34,7 @@ var ProfileHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Reques
 	resp["friends"] = teaser.GetFriendsList(account.Username)
 	resp["frequents"] = teaser.GetFrequentsList(account.Username)
 	resp["teases"] = teaser.GetTeasesList(account.Username)
+	resp["rank"] = teaser.GetRank(account.SentCount)
 
 	write, err := json.Marshal(resp)
 

@@ -20,3 +20,8 @@ CREATE TABLE friends (
   username2 TEXT,
   time INTEGER
 );
+
+CREATE TABLE ranks (
+  count INTEGER,
+  name TEXT
+);

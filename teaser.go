@@ -28,6 +28,7 @@ func links() {
 	teaser.CreateTease = db.CreateTease
 	teaser.ReadTease = db.ReadTease
 	teaser.LoadFrequentsList = db.LoadFrequentsList
+	teaser.LoadRank = db.LoadRank
 }
 
 func routes() {
