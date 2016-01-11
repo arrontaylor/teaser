@@ -41,14 +41,20 @@
 				background: rgba(250, 250, 250, 0.75);
 				border: 1px solid #a34e4c;
 			}
-			div#leftContainer {
+			div#frequent {
 				margin: 0px auto;
-				margin-top: 50px;
+				margin-top: 10px;
 				width: 300px;
-				height: 100%;
+				height: 200px;
 				border: 1px solid #d3c6c6;
 				background: #fff;
-				float: left;
+				float: left;	
+			}
+			div#leftContainer {
+				margin-top: 50px;
+				width: 300px;
+				border: 1px solid #d3c6c6;
+				background: #fff;
 			}
 			div#leftContainer input, button {
 				margin: 0px auto;
@@ -65,7 +71,7 @@
 
 			div#rightContainer {
 				margin: 0px auto;
-				margin-top: 50px;
+				margin-top: -150px;
 				width: 350px;
 				border: 1px solid #d3c6c6;
 				float: right;
@@ -124,7 +130,14 @@
 				font-family: tahoma;
 				border-bottom: 1px solid #ccc;
 			}
-
+			div.headerItem {
+				padding: 5px;
+				background: #f4efef;
+				font-size: 12px;
+				font-family: tahoma;
+				border-bottom: 1px solid #ccc;
+				text-align: center;
+			}
 			div.newTease {
 				padding: 25px 15px 15px 15px;
 				text-align: center;
@@ -195,7 +208,6 @@
 					})
 					$("#recievedTeases").append(row)
 				})
-			}
 
 			sendTease = function() {
 				var value = $('#send-tease-select')[0].value
@@ -239,6 +251,7 @@
 			logout = function() {
 				window.location.pathname = "/logout.go"
 			}
+		}
 		</script>
 			<div id="topBar">
 				<img id="logo" src="../logo.png">
@@ -254,8 +267,21 @@
 						<img src=\"../tease.png\">	<span id="username"></span>
 						</span>
 					</div>
+					<div class="headerItem">
+						Master Teaser
+					</div>
+					<div class="headerItem">
+						Invite Friends
+					</div>
+					<div class="headerItem">
+						<button onclick="logout()">
+							Log out
+						</button>
+					</div>
 				</div>
-				<div style="padding: 50px;">
+			</div>
+			<div id="frequent">
+				<div style="padding: 5px;">
 				    <form method="POST" action="/add-friend.go">
 				     <input name="username2" placeholder="add friend by name">
 				      <button type="submit">Submit</button>
@@ -269,11 +295,6 @@
 					</select><br><br>
 					<button type="submit" onclick="sendTease()">Submit</button>
 				</div>
-				
-				<br><br>
-				<button onclick="logout()">
-					Log out
-				</button>
 			</div>
 			<div id="rightContainer">
 				<div class="header">
