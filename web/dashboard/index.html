@@ -39,6 +39,8 @@
 				float: right;
 				border-top:0px;
 				border-left: 0px;
+				max-height: 650px;
+				overflow: scroll;
 			}
 			div#rightContainer span#header {
 				text-align: center;
@@ -68,12 +70,14 @@
 				font-size: 12px;
 				font-family: verdana;
 			}
-			table#teases tr {
+			table#recievedTeases tr {
 				text-align: center;
+				line-height: 35px;
 			}
-			table#teases tr:nth-child(even) 
+			table#recievedTeases tr:nth-child(even) 
 			{
-				background-color: #eee;
+				background-color: #fff;
+				border-color: #fff;
 			}
 			table#recievedTeases td img {
 				height: 25px;
@@ -150,6 +154,7 @@
 					$("#send-tease-select").append($("<option value=\"" + friend + "\">" + friend + "</option>"))
 				})
 				$.each(data.teases, function(index, tease) {
+
 					var row = $("<tr><td><img src=\"../tease.png\"></td><form><td name=tousername>" + tease.FromUsername + "</td><td>" + tease.Time + "</td><td><button value=sendback  onclick=sendTease() >sendback</button></form></td></tr>")
 					$('button', row).click(function() {
 						replyTease(tease.FromUsername)
@@ -209,6 +214,12 @@
 						<span id="username"></span> Tease a Friend
 					</span>
 				</div>
+				<div style="padding: 50px;">
+				    <form method="POST" action="./add-friend.go">
+				     <input name="username2" placeholder="add friend by name">
+				      <button type="submit">Submit</button>
+				    </form>
+				</div>
 				<div class="newTease">
 					<span>
 						Choose your tease:
@@ -229,7 +240,7 @@
 						Recent Teases
 					</span>
 				</div>
-				<table id="recievedTeases">
+				<table id="recievedTeases" cellspacing="0" cellpadding="2">
 					
 				</table>
 			</div>
