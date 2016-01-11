@@ -202,10 +202,16 @@
 				})
 				$.each(data.teases, function(index, tease) {
 
-					var row = $("<tr><td><img src=\"../tease.png\"></td><form><td name=tousername>" + tease.FromUsername + "</td><td>" + moment(tease.Time).fromNow() + "</td><td><button value=sendback  onclick=sendTease() >tease back</button></form></td></tr>")
-					$('button', row).click(function() {
+					var row = $("<tr><td><img src=\"../tease.png\"></td><td name=tousername>" + tease.FromUsername + "</td><td>" + moment(tease.Time).fromNow() + "</td><td><button>tease back</button></td><td><button>x</button></td></tr>")
+					
+					$($('button', row)[0]).click(function() {
+						readTease(tease.TeaseId)
 						replyTease(tease.FromUsername)
 					})
+					$($('button', row)[1]).click(function() {
+						readTease(tease.TeaseId)
+					})
+
 					$("#recievedTeases").append(row)
 				})
 
@@ -235,6 +241,24 @@
 				fd.append( 'tousername', fromusername );
 				$.ajax({
 				  url: '/create-tease.go',
+				  data: fd,
+				  processData: false,
+				  contentType: false,
+				  type: 'POST',
+				  success: function(data){
+				  	refreshProfile()
+			  	  },
+			  	  error: function() {
+			  	  	console.log('oops')
+			  	  	console.log(arguments)
+			  	  }
+			  	});	
+			}
+			readTease = function(teaseid) {
+				var fd = new FormData()
+				fd.append('teaseid', teaseid)
+				$.ajax({
+				  url: '/read-tease.go',
 				  data: fd,
 				  processData: false,
 				  contentType: false,
