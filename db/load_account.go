@@ -1,6 +1,9 @@
 package db
 
-import "github.com/arrontaylor/teaser/teaser"
+import (
+	log "github.com/Sirupsen/logrus"
+	"github.com/arrontaylor/teaser/teaser"
+)
 
 var LoadAccount = func(username string) *teaser.Account {
 	account := &teaser.Account{}
@@ -10,6 +13,16 @@ var LoadAccount = func(username string) *teaser.Account {
 	err := row.Scan(&account.AccountId, &account.Username, &account.Password, &account.FirstName, &account.LastName, &account.Gender)
 
 	if err != nil {
+		log.Warn(err.Error())
+		return nil
+	}
+
+	row = Connection.QueryRow("SELECT count(*) FROM teases WHERE fromusername=?", username)
+
+	err = row.Scan(&account.SentCount)
+
+	if err != nil {
+		log.Warn(err.Error())
 		return nil
 	}
 

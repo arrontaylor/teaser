@@ -8,6 +8,7 @@ type Account struct {
 	FirstName string
 	LastName  string
 	Gender    string
+	SentCount int
 }
 
 var LoadAccount func(username string) *Account

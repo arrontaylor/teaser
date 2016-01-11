@@ -30,6 +30,7 @@ var ProfileHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Reques
 	resp := make(map[string]interface{})
 
 	resp["username"] = account.Username
+	resp["sent"] = account.SentCount
 	resp["friends"] = teaser.GetFriendsList(account.Username)
 	resp["teases"] = teaser.GetTeasesList(account.Username)
 

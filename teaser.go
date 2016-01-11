@@ -1,14 +1,19 @@
 package main
 
-import "github.com/arrontaylor/teaser/server"
-import "github.com/arrontaylor/teaser/teaser"
-import "github.com/arrontaylor/teaser/db"
-import "net/http"
-import "fmt"
+import (
+	"fmt"
+	log "github.com/Sirupsen/logrus"
+	"github.com/arrontaylor/teaser/db"
+	"github.com/arrontaylor/teaser/server"
+	"github.com/arrontaylor/teaser/teaser"
+	"net/http"
+)
 
 func main() {
 	links()
 	routes()
+
+	log.SetLevel(log.DebugLevel)
 
 	fmt.Println("Starting teaser server...")
 	http.ListenAndServe(":8080", nil)

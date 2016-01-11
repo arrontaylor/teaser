@@ -175,6 +175,8 @@
 		<script>
 			$(function() {
 				refreshProfile()
+
+				$('#add-friend-submit').click(addFriend)
 			});
 
 			sendTease = function(tousername) {
@@ -214,6 +216,7 @@
 
 					$("#recievedTeases").append(row)
 				})
+			}
 
 			sendTease = function() {
 				var value = $('#send-tease-select')[0].value
@@ -236,6 +239,7 @@
 			  	  }
 			  	});	
 			}
+
 			replyTease = function(fromusername) {
 				var fd = new FormData();    
 				fd.append( 'tousername', fromusername );
@@ -254,6 +258,7 @@
 			  	  }
 			  	});	
 			}
+
 			readTease = function(teaseid) {
 				var fd = new FormData()
 				fd.append('teaseid', teaseid)
@@ -272,13 +277,35 @@
 			  	  }
 			  	});	
 			}
+
 			logout = function() {
 				window.location.pathname = "/logout.go"
 			}
-		}
+
+			addFriend = function() {
+				var value = $('#add-friend-input')[0].value
+				$('#add-friend-input')[0].value = ""
+				var fd = new FormData()
+				fd.append("username2", value)
+
+				$.ajax({
+					url: '/add-friend.go',
+					data: fd,
+					processData: false,
+					contentType: false,
+					type: 'POST',
+					success: function(data){
+						refreshProfile()
+					},
+					error: function() {
+						console.log('oops')
+						console.log(arguments)
+					}
+				});
+			}
 		</script>
 			<div id="topBar">
-				<img id="logo" src="../logo.png">
+				<img id="logo" src="/logo.png">
 				<div id="quickTease">
 					+
 				</div>
@@ -288,7 +315,7 @@
 				<div id="miniProfile">
 					<div class="header">
 						<span>
-						<img src=\"../tease.png\">	<span id="username"></span>
+						<img src="/tease.png">	<span id="username"></span>
 						</span>
 					</div>
 					<div class="headerItem">
@@ -306,10 +333,8 @@
 			</div>
 			<div id="frequent">
 				<div style="padding: 5px;">
-				    <form method="POST" action="/add-friend.go">
-				     <input name="username2" placeholder="add friend by name">
-				      <button type="submit">Submit</button>
-				    </form>
+					<input id="add-friend-input" placeholder="add friend by name">
+					<button id="add-friend-submit" type="submit">Submit</button>
 				</div>
 				<div class="newTease">
 					<span>

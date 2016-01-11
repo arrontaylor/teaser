@@ -36,6 +36,8 @@ var CreateTeaseHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Re
 		w.Write([]byte("{\"error\":\"Error creating tease\"}"))
 	}
 
+	account.SentCount++
+
 	delete(teaser.TeasesLists, tousername)
 	http.Redirect(w, r, "/dashboard", http.StatusMovedPermanently)
 })

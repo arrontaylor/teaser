@@ -1,17 +1,22 @@
 package server
 
-import "github.com/arrontaylor/teaser/teaser"
-import "net/http"
-import "strconv"
+import (
+	log "github.com/Sirupsen/logrus"
+	"github.com/arrontaylor/teaser/teaser"
+	"net/http"
+	"strconv"
+)
 
 var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
+		log.Debug("Login request not \"POST\": ", r)
 		w.WriteHeader(404)
 	}
 
 	// redirect if already logged in
 	if sessionCookie, err := r.Cookie("SessionId"); err == nil {
 		if sessionId, err := strconv.ParseInt(sessionCookie.Value, 10, 0); err == nil && Sessions[int(sessionId)] != nil {
+			log.Debug("Login redirect, session exists: ", Sessions[int(sessionId)])
 			http.Redirect(w, r, "/dashboard", http.StatusMovedPermanently)
 			return
 		}
@@ -23,6 +28,7 @@ var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request)
 	account := teaser.GetAccount(username)
 
 	if account == nil {
+		log.Debug("Login failed. Account does not exist: " + username)
 		http.Redirect(w, r, "/signup", http.StatusMovedPermanently)
 		return
 	}
