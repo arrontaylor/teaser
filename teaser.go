@@ -27,6 +27,7 @@ func links() {
 	teaser.LoadTeasesList = db.LoadTeasesList
 	teaser.CreateTease = db.CreateTease
 	teaser.ReadTease = db.ReadTease
+	teaser.LoadFrequentsList = db.LoadFrequentsList
 }
 
 func routes() {
