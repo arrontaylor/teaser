@@ -1,6 +1,7 @@
 <html>
 	<head>
 	    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	    <script src="/js/moment.js"></script>
 		<style>
 			body {
 				margin: 0px;
@@ -184,7 +185,7 @@
 				})
 				$.each(data.teases, function(index, tease) {
 
-					var row = $("<tr><td><img src=\"../tease.png\"></td><form><td name=tousername>" + tease.FromUsername + "</td><td>" + tease.Time + "</td><td><button value=sendback  onclick=sendTease() >sendback</button></form></td></tr>")
+					var row = $("<tr><td><img src=\"../tease.png\"></td><form><td name=tousername>" + tease.FromUsername + "</td><td>" + moment(tease.Time).fromNow() + "</td><td><button value=sendback  onclick=sendTease() >sendback</button></form></td></tr>")
 					$('button', row).click(function() {
 						replyTease(tease.FromUsername)
 					})
@@ -249,7 +250,7 @@
 					</span>
 				</div>
 				<div style="padding: 50px;">
-				    <form method="POST" action="./add-friend.go">
+				    <form method="POST" action="/add-friend.go">
 				     <input name="username2" placeholder="add friend by name">
 				      <button type="submit">Submit</button>
 				    </form>
