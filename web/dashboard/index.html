@@ -14,35 +14,39 @@
 			div#topBar {
 				margin: 0px;
 				height: 50px;
-				background: #BA3733;
+				background: #683231;
 			}
 			img#logo {
 				margin: 5px 15px;
 				height: 37px;
+				opacity: .8;
+			}
+			img#logo:hover {
+				opacity: 1;
 			}
 			div#quickTease {
 				float: right;
 				height: 30px;
 				width: 30px;
-				background: rgba(250, 250, 250, 0.75);
+				background: rgba(250, 250, 250, 0.5);
 				margin: 10px;
 				line-height: 25px;
 				text-align: center;
 				font-size: 25px;
 				border-radius: 30px;
 				cursor: pointer;
-				border: 1px solid #a34e4c;
+				border: 1px solid #683231;
 			}
 			div#quickTease:hover {
-				background: rgba(250, 250, 250, 0.5);
+				background: rgba(250, 250, 250, 0.75);
 				border: 1px solid #a34e4c;
 			}
 			div#leftContainer {
 				margin: 0px auto;
-				width: 400px;
+				margin-top: 50px;
+				width: 300px;
 				height: 100%;
 				border: 1px solid #d3c6c6;
-				border-top:0px;
 				background: #fff;
 				float: left;
 			}
@@ -63,7 +67,7 @@
 				margin: 0px auto;
 				margin-top: 50px;
 				width: 350px;
-				border: 1px solid #683231;
+				border: 1px solid #d3c6c6;
 				float: right;
 				text-align: center;
 			}
@@ -119,8 +123,8 @@
 				font-size: 14px;
 				font-family: tahoma;
 				border-bottom: 1px solid #ccc;
-
 			}
+
 			div.newTease {
 				padding: 25px 15px 15px 15px;
 				text-align: center;
@@ -185,7 +189,7 @@
 				})
 				$.each(data.teases, function(index, tease) {
 
-					var row = $("<tr><td><img src=\"../tease.png\"></td><form><td name=tousername>" + tease.FromUsername + "</td><td>" + moment(tease.Time).fromNow() + "</td><td><button value=sendback  onclick=sendTease() >sendback</button></form></td></tr>")
+					var row = $("<tr><td><img src=\"../tease.png\"></td><form><td name=tousername>" + tease.FromUsername + "</td><td>" + moment(tease.Time).fromNow() + "</td><td><button value=sendback  onclick=sendTease() >tease back</button></form></td></tr>")
 					$('button', row).click(function() {
 						replyTease(tease.FromUsername)
 					})
@@ -244,10 +248,12 @@
 			</div>
 		<div id="main">
 			<div id="leftContainer">
-				<div class="header">
-					<span>
-						<span id="username"></span> Tease a Friend
-					</span>
+				<div id="miniProfile">
+					<div class="header">
+						<span>
+						<img src=\"../tease.png\">	<span id="username"></span>
+						</span>
+					</div>
 				</div>
 				<div style="padding: 50px;">
 				    <form method="POST" action="/add-friend.go">
