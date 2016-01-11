@@ -23,5 +23,13 @@ var CreateTease = func(fromusername string, tousername string) *teaser.Tease {
 		return nil
 	}
 
+	teaseid, err := res.LastInsertId()
+
+	if err != nil {
+		return nil
+	}
+
+	tease.TeaseId = int(teaseid)
+
 	return tease
 }

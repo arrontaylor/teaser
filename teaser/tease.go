@@ -3,6 +3,7 @@ package teaser
 import "time"
 
 type Tease struct {
+	TeaseId      int
 	FromUsername string
 	ToUsername   string
 	Time         time.Time
@@ -10,3 +11,4 @@ type Tease struct {
 }
 
 var CreateTease func(fromusername string, tousername string) *Tease
+var ReadTease func(teaseid int, tousername string)

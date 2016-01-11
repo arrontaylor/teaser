@@ -21,6 +21,7 @@ func links() {
 	teaser.AddFriendToList = db.AddFriendToList
 	teaser.LoadTeasesList = db.LoadTeasesList
 	teaser.CreateTease = db.CreateTease
+	teaser.ReadTease = db.ReadTease
 }
 
 func routes() {
@@ -30,5 +31,6 @@ func routes() {
 	http.Handle("/signup.go", server.SignupHandler)
 	http.Handle("/profile.json", server.ProfileHandler)
 	http.Handle("/create-tease.go", server.CreateTeaseHandler)
+	http.Handle("/read-tease.go", server.ReadTeaseHandler)
 	http.Handle("/add-friend.go", server.AddFriendHandler)
 }

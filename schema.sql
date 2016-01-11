@@ -8,6 +8,7 @@ CREATE TABLE accounts (
 );
 
 CREATE TABLE teases (
+  teaseid INTEGER PRIMARY KEY NOT NULL,
   fromusername TEXT,
   tousername TEXT,
   time INTEGER,
