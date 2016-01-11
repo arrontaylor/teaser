@@ -23,6 +23,7 @@
 			}
 			img#logo:hover {
 				opacity: 1;
+				cursor: pointer;
 			}
 			div#quickTease {
 				float: right;
@@ -53,8 +54,6 @@
 			div#leftContainer {
 				margin-top: 50px;
 				width: 300px;
-				border: 1px solid #d3c6c6;
-				background: #fff;
 			}
 			div#leftContainer input, button {
 				margin: 0px auto;
@@ -71,7 +70,7 @@
 
 			div#rightContainer {
 				margin: 0px auto;
-				margin-top: -150px;
+				margin-top: -300px;
 				width: 350px;
 				border: 1px solid #d3c6c6;
 				float: right;
@@ -129,6 +128,16 @@
 				font-size: 14px;
 				font-family: tahoma;
 				border-bottom: 1px solid #ccc;
+				line-height: 5px;
+				min-height: 25px;
+			}
+			div.header span {
+				display: block;
+				line-height: 5px;
+			}
+			div.header img {
+				float: right;
+				height: 30px;
 			}
 			div.headerItem {
 				padding: 5px;
@@ -146,7 +155,7 @@
 				font-size: 14px;
 				font-family: tahoma;
 			}
-			div.newTease button {
+			button {
 				padding: 5px 10px 5px 10px;
 				border: 1px solid #827a7a;
 				color: #fff;
@@ -168,6 +177,30 @@
 			form {
 				height: 15px;
 			}
+			div.itemContainer {
+				border: 1px solid #d3c6c6;
+				margin-top: 10px;
+			}
+			input#add-friend-input {
+				display: block;
+				padding: 5px;
+				margin-top: 10px;
+				margin: 0px auto;
+			}
+			div#quickT {
+				position: absolute;
+				display: none;
+				padding: 5px;
+				height: 300px;
+				width: 250px;
+				right: 10px;
+				background: #d3c6c6;
+				z-index: 3;
+				margin-top: 25px;
+				box-shadow:0px 4px 3px rgba(0, 0, 0, 0.15);
+								border: 1px solid #683231;
+
+			}
 		</style>
 	</head>
 	<body>
@@ -177,6 +210,9 @@
 				refreshProfile()
 
 				$('#add-friend-submit').click(addFriend)
+				$('#quickTease').click(function() {
+					$( "#quickT" ).toggle( "slow" );
+				});
 			});
 
 			sendTease = function(tousername) {
@@ -196,6 +232,7 @@
 
 				$('#recievedTeases')[0].innerHTML = ""
 				$("#send-tease-select")[0].innerHTML = ""
+				$("#frequentTeasers")[0].innerHTML = ""
 
 				$('#username')[0].innerHTML = data.username
 
@@ -215,6 +252,11 @@
 					})
 
 					$("#recievedTeases").append(row)
+				})
+
+				$.each(data.frequents, function(name, count) {
+					var row = $("<div class=\"headerItem\" >" + name + "</div>")
+					$("#frequentTeasers").append(row)
 				})
 			}
 
@@ -309,10 +351,24 @@
 				<div id="quickTease">
 					+
 				</div>
+				<div id="quickT">
+					<div class="newTease">
+						<span>
+							Choose your tease:
+						</span>
+						<select name="tousername" id="send-tease-select" type="text" placeholder="username">
+						</select><br><br>
+						<button type="submit" onclick="sendTease()">Submit</button>
+					</div>
+					<div style="padding: 5px;">
+					<input id="add-friend-input" placeholder="add friend by name"> <br>
+					<button id="add-friend-submit" type="submit">Submit</button>
+				</div>
+				</div>
 			</div>
 		<div id="main">
 			<div id="leftContainer">
-				<div id="miniProfile">
+				<div class="itemContainer">
 					<div class="header">
 						<span>
 						<img src="/tease.png">	<span id="username"></span>
@@ -330,19 +386,17 @@
 						</button>
 					</div>
 				</div>
-			</div>
-			<div id="frequent">
-				<div style="padding: 5px;">
-					<input id="add-friend-input" placeholder="add friend by name">
-					<button id="add-friend-submit" type="submit">Submit</button>
-				</div>
-				<div class="newTease">
-					<span>
-						Choose your tease:
-					</span>
-					<select name="tousername" id="send-tease-select" type="text" placeholder="username">
-					</select><br><br>
-					<button type="submit" onclick="sendTease()">Submit</button>
+				<div class="itemContainer">
+					<div class="header">
+						<span>
+						<img src="/tease.png">	<span>Top 3 Teases</span>
+						</span>
+					</div>
+					<div class="headerItem">
+						<div id="frequentTeasers">
+							
+						</div>
+					</div>
 				</div>
 			</div>
 			<div id="rightContainer">
