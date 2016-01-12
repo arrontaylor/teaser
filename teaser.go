@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	log "github.com/Sirupsen/logrus"
 	"github.com/arrontaylor/teaser/db"
@@ -9,14 +10,21 @@ import (
 	"net/http"
 )
 
+var port string
+
 func main() {
+	options()
 	links()
 	routes()
 
 	log.SetLevel(log.DebugLevel)
 
 	fmt.Println("Starting teaser server...")
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":"+port, nil)
+}
+
+func options() {
+	flag.StringVar(&port, "port", "8080", "port to open the server on")
 }
 
 func links() {
