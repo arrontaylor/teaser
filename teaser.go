@@ -25,6 +25,7 @@ func main() {
 
 func options() {
 	flag.StringVar(&port, "port", "8080", "port to open the server on")
+	flag.Parse()
 }
 
 func links() {
