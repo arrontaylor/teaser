@@ -34,6 +34,7 @@ var CreateTeaseHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Re
 	if toaccount == nil {
 		w.WriteHeader(500)
 		w.Write([]byte("{\"error\":\"Cannot send tease to '" + tousername + "': Account does not exist\"}"))
+		return
 	}
 
 	tease := teaser.CreateTease(fromusername, tousername)
@@ -41,6 +42,7 @@ var CreateTeaseHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Re
 	if tease == nil {
 		w.WriteHeader(500)
 		w.Write([]byte("{\"error\":\"Error creating tease\"}"))
+		return
 	}
 
 	fromaccount.SentCount++

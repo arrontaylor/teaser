@@ -29,6 +29,14 @@ var AddFriendHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Requ
 	username1 := account.Username
 	username2 := r.FormValue("username2")
 
+	friendaccount := teaser.GetAccount(username2)
+
+	if friendaccount == nil {
+		w.WriteHeader(500)
+		w.Write([]byte("{\"error\":\"Cannot add friend '" + username2 + "': Account does not exist\"}"))
+		return
+	}
+
 	teaser.AddFriendToList(username1, username2)
 
 	delete(teaser.FriendsLists, username1)
