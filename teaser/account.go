@@ -1,7 +1,6 @@
 package teaser
 
 type Account struct {
-	AccountId int
 	SessionId int
 	Username  string
 	Password  string

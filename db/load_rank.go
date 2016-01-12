@@ -13,7 +13,7 @@ func LoadRank(sentcount int) teaser.Rank {
 	err := row.Scan(&count, &rank)
 
 	if err != nil {
-		log.Warn(err.Error())
+		log.Warn("Error loading rank: " + err.Error())
 		return nil
 	}
 

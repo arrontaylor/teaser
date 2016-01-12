@@ -8,12 +8,12 @@ import (
 var LoadAccount = func(username string) *teaser.Account {
 	account := &teaser.Account{}
 
-	row := Connection.QueryRow("SELECT accountid, username, password, firstname, lastname, gender FROM accounts WHERE username=?", username)
+	row := Connection.QueryRow("SELECT username, password, firstname, lastname, gender FROM accounts WHERE username=?", username)
 
-	err := row.Scan(&account.AccountId, &account.Username, &account.Password, &account.FirstName, &account.LastName, &account.Gender)
+	err := row.Scan(&account.Username, &account.Password, &account.FirstName, &account.LastName, &account.Gender)
 
 	if err != nil {
-		log.Warn(err.Error())
+		log.Warn("Error loading account: " + err.Error())
 		return nil
 	}
 
@@ -22,7 +22,7 @@ var LoadAccount = func(username string) *teaser.Account {
 	err = row.Scan(&account.SentCount)
 
 	if err != nil {
-		log.Warn(err.Error())
+		log.Warn("Error retrieving sent count: " + err.Error())
 		return nil
 	}
 
