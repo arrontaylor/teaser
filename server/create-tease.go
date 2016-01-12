@@ -10,24 +10,31 @@ var CreateTeaseHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	var account *teaser.Account
+	var fromaccount *teaser.Account
 
 	if sessionCookie, err := r.Cookie("SessionId"); err == nil {
 		if sessionId, err := strconv.ParseInt(sessionCookie.Value, 10, 0); err == nil {
 			if username := Sessions[int(sessionId)]; username != nil {
-				account = teaser.Accounts[*username]
+				fromaccount = teaser.Accounts[*username]
 			}
 		}
 	}
 
-	if account == nil {
+	if fromaccount == nil {
 		w.WriteHeader(500)
 		w.Write([]byte("{\"error\":\"Not logged in\"}"))
 		return
 	}
 
-	fromusername := account.Username
+	fromusername := fromaccount.Username
 	tousername := r.FormValue("tousername")
+
+	toaccount := teaser.GetAccount(tousername)
+
+	if toaccount == nil {
+		w.WriteHeader(500)
+		w.Write([]byte("{\"error\":\"Cannot send tease to '" + tousername + "': Account does not exist\"}"))
+	}
 
 	tease := teaser.CreateTease(fromusername, tousername)
 
@@ -36,7 +43,7 @@ var CreateTeaseHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Re
 		w.Write([]byte("{\"error\":\"Error creating tease\"}"))
 	}
 
-	account.SentCount++
+	fromaccount.SentCount++
 
 	delete(teaser.TeasesLists, tousername)
 	delete(teaser.FrequentsLists, fromusername)
