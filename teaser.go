@@ -1,4 +1,4 @@
-∫package main
+package main
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"github.com/arrontaylor/teaser/db"
 	"github.com/arrontaylor/teaser/server"
 	"github.com/arrontaylor/teaser/teaser"
-	"net/http"
+	"net/http"∫
 )
 
 func main() {
@@ -19,7 +19,7 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-func links() {
+func links() {∫
 	teaser.LoadAccount = db.LoadAccount
 	teaser.CreateAccount = db.CreateAccount
 	teaser.LoadFriendsList = db.LoadFriendsList
