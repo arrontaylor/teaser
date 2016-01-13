@@ -13,7 +13,7 @@ var LoadAccount = func(username string) *teaser.Account {
 	err := row.Scan(&account.AccountId, &account.Username, &account.Password, &account.FirstName, &account.LastName, &account.Gender)
 
 	if err != nil {
-		log.Warn(err.Error())
+		log.Warn("Error retrieving account: " + err.Error())
 		return nil
 	}
 
@@ -22,7 +22,7 @@ var LoadAccount = func(username string) *teaser.Account {
 	err = row.Scan(&account.SentCount)
 
 	if err != nil {
-		log.Warn(err.Error())
+		log.Warn("Error retrieving teases count" + err.Error())
 		return nil
 	}
 

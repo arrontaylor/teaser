@@ -252,6 +252,9 @@
 					$($('button', row)[1]).click(function() {
 						readTease(tease.TeaseId)
 					})
+					$($('button', row)[2]).click(function() {
+						addFriendBack(tease.FromUsername)
+					})
 
 					$("#recievedTeases").append(row)
 				})
@@ -320,6 +323,26 @@
 			  	  	console.log(arguments)
 			  	  }
 			  	});	
+			}
+
+			addFriendBack = function(fromusername) {
+				value = fromusername;
+				var fd = new FormData()
+				fd.append("username2", value)
+				$.ajax({
+					url: '/add-friend.go',
+					data: fd,
+					processData: false,
+					contentType: false,
+					type: 'POST',
+					success: function(data){
+						refreshProfile()
+					},
+					error: function() {
+						console.log('oops')
+						console.log(arguments)
+					}
+				});
 			}
 
 			logout = function() {
