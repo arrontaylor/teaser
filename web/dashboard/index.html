@@ -243,7 +243,7 @@
 				})
 				$.each(data.teases, function(index, tease) {
 
-					var row = $("<tr><td><img src=\"../tease.png\"></td><td name=tousername>" + tease.FromUsername + "</td><td>" + moment(tease.Time).fromNow() + "</td><td><button>tease back</button></td><td><button>x</button></td></tr>")
+					var row = $("<tr><td><img src=\"../tease.png\"></td><td name=tousername>" + tease.FromUsername + "</td><td>" + moment(tease.Time).fromNow() + "</td><td><button>tease back</button></td><td><button>x</button></td><td><button>+</button></td></tr>")
 					
 					$($('button', row)[0]).click(function() {
 						readTease(tease.TeaseId)
